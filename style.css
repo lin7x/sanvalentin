@@ -394,12 +394,22 @@ body {
     max-width: 400px;
     position: relative;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
+    user-select: none;
+    /* Prevent text selection on quick clicks */
 }
 
 .coupon:hover {
-    transform: scale(1.02) rotate(-1deg);
+    transform: scale(1.05) rotate(-1deg);
+    border-color: #ff0040;
+    background-color: #fff0f3;
+    /* Light pink tint */
+    box-shadow: 0 8px 15px rgba(255, 77, 109, 0.2);
+}
+
+.coupon:active {
+    transform: scale(0.98);
 }
 
 .coupon-header {
@@ -408,25 +418,27 @@ body {
     color: #888;
     letter-spacing: 2px;
     margin-bottom: 0.5rem;
+    transition: color 0.3s;
 }
 
-.coupon-content {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--text-color);
-    margin-bottom: 0.5rem;
-}
-
-.coupon-footer {
-    font-size: 0.8rem;
+.coupon:hover .coupon-header {
     color: var(--primary-color);
 }
+
+/* ... existing content ... */
 
 /* Special styling for the PS5 coupon */
 .coupon.special {
     border: 2px solid gold;
     background: linear-gradient(135deg, #fff 0%, #fffbe0 100%);
     box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.coupon.special:hover {
+    transform: scale(1.05) rotate(1deg);
+    background: linear-gradient(135deg, #fff 0%, #ffeaa7 100%);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+    border-color: #ffbf00;
 }
 
 .coupon.special .coupon-header {
