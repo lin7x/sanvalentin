@@ -5,6 +5,8 @@
     --text-color: #590d22;
     --glass-bg: rgba(255, 255, 255, 0.85);
     --glass-border: rgba(255, 255, 255, 0.9);
+    --envelope-bg: #ff4d6d;
+    --envelope-shadow: rgba(0, 0, 0, 0.2);
 }
 
 * {
@@ -24,6 +26,176 @@ body {
     color: var(--text-color);
 }
 
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.hidden {
+    display: none !important;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* --- ENVELOPE STYLES --- */
+.envelope-wrapper {
+    position: relative;
+    cursor: pointer;
+    animation: float 3s ease-in-out infinite;
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: var(--envelope-bg);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 10px 20px var(--envelope-shadow);
+}
+
+.envelope::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #ff758f;
+    /* Top flap inner */
+    transform-origin: top;
+    transition: transform 0.5s 0.2s;
+    /* Delay closing/opening */
+    z-index: 3;
+}
+
+.envelope .front {
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: 4;
+}
+
+.envelope .flap {
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-bottom: 100px solid transparent;
+    /* Invisible initially */
+    top: 0;
+}
+
+.envelope .pocket {
+    border-left: 150px solid #ff5d7a;
+    border-right: 150px solid #ff5d7a;
+    border-bottom: 100px solid #ff3355;
+    bottom: 0;
+    border-radius: 0 0 10px 10px;
+}
+
+.envelope .letter {
+    position: absolute;
+    background-color: #fff;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+    border-radius: 5px;
+    z-index: 2;
+    transition: transform 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.envelope .letter .text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+/* Opening Animation Classes */
+.envelope.open::before {
+    transform: rotateX(180deg);
+    z-index: 1;
+    transition-delay: 0s;
+}
+
+.envelope.open .letter {
+    transform: translateY(-80px);
+    transition-delay: 0.4s;
+    z-index: 5;
+    /* Moves above the pocket */
+}
+
+/* Hearts decorations */
+.hearts {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+.click-hint {
+    margin-top: 2rem;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite;
+}
+
+/* --- LETTER PAPER STYLES --- */
+.paper {
+    background: #fff;
+    width: 90%;
+    max-width: 500px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: rotate(-1deg);
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: #444;
+    position: relative;
+    border-radius: 2px;
+}
+
+.paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40px;
+    height: 100%;
+    width: 2px;
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.paper .date {
+    text-align: right;
+    font-size: 1.2rem;
+    color: #888;
+    margin-bottom: 2rem;
+}
+
+.paper .dear {
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.paper .body {
+    margin-bottom: 1.5rem;
+    text-indent: 2rem;
+}
+
+/* --- EXISTING STYLES (Adjusted) --- */
 .background-hearts {
     position: absolute;
     top: 0;
@@ -38,8 +210,37 @@ body {
 }
 
 @keyframes floating {
-    0% { background-position: 0 0; }
-    100% { background-position: 60px 60px; }
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 60px 60px;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 .container {
@@ -53,16 +254,12 @@ body {
     background: var(--glass-bg);
     padding: 3rem 2rem;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1), 
-                inset 0 0 20px rgba(255,255,255,0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1),
+        inset 0 0 20px rgba(255, 255, 255, 0.5);
     border: 2px solid var(--glass-border);
     backdrop-filter: blur(10px);
     transform: translateY(0);
     transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
 }
 
 .title {
@@ -70,7 +267,6 @@ body {
     font-size: 3.5rem;
     color: var(--primary-color);
     margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .subtitle {
@@ -97,8 +293,8 @@ body {
     justify-content: center;
     gap: 1.5rem;
     position: relative;
-    /* Ensure height for button movement area isn't constrained too tightly here, 
-       but we want them side by side initially */
+    /* Ensure height for button movement area isn't constrained too tightly here */
+    min-height: 60px;
 }
 
 .btn {
@@ -122,11 +318,18 @@ body {
     background-color: #ff3355;
 }
 
+.next-btn {
+    background-color: var(--primary-color);
+    color: white;
+    margin-top: 1rem;
+}
+
 .no-btn {
     background-color: white;
     color: var(--primary-color);
     border: 2px solid var(--primary-color);
-    /* No absolute positioning initially */
+    z-index: 100;
+    /* Ensure it stays clickable/hoverable */
 }
 
 /* Success Message Overlay */
@@ -164,9 +367,5 @@ body {
 .celebrate-gif {
     margin: 2rem 0;
     border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.hidden {
-    display: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }

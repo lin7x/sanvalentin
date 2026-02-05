@@ -2,30 +2,55 @@ const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const successMessage = document.getElementById('successMessage');
 
+// New Elements
+const envelope = document.getElementById('envelope');
+const envelopeScreen = document.getElementById('envelope-screen');
+const letterScreen = document.getElementById('letter-screen');
+const finishLetterBtn = document.getElementById('finishLetterBtn');
+const proposalScreen = document.getElementById('proposal-screen');
+
+// --- ENVELOPE LOGIC ---
+envelope.addEventListener('click', () => {
+    envelope.classList.add('open');
+
+    // Wait for animation to finish before showing letter full screen
+    setTimeout(() => {
+        envelopeScreen.classList.add('hidden');
+        letterScreen.classList.remove('hidden');
+    }, 800);
+});
+
+finishLetterBtn.addEventListener('click', () => {
+    letterScreen.classList.add('hidden');
+    proposalScreen.classList.remove('hidden');
+});
+
+
+// --- PROPOSAL LOGIC ---
+
 // Configuration for the "No" button movement
 const moveNoButton = () => {
     // Get viewport dimensions
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
-    
+
     // Get button dimensions
     const btnRect = noBtn.getBoundingClientRect();
     const btnWidth = btnRect.width;
     const btnHeight = btnRect.height;
-    
+
     // Calculate random position within safe bounds
-    // We leave some margin (e.g., 50px) so it doesn't stick to the absolute edge
     const maxLeft = viewportWidth - btnWidth - 50;
     const maxTop = viewportHeight - btnHeight - 50;
-    
+
     const randomLeft = Math.max(50, Math.floor(Math.random() * maxLeft));
     const randomTop = Math.max(50, Math.floor(Math.random() * maxTop));
-    
+
     // Apply new style
-    noBtn.style.position = 'fixed'; // Change to fixed to allow free movement across screen
+    noBtn.style.position = 'fixed';
     noBtn.style.left = randomLeft + 'px';
     noBtn.style.top = randomTop + 'px';
-    
+
     // Add a funny scale effect
     noBtn.style.transform = 'scale(0.9)';
     setTimeout(() => {
@@ -36,7 +61,7 @@ const moveNoButton = () => {
 // Events for "No" button
 noBtn.addEventListener('mouseover', moveNoButton);
 noBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault(); // Prevent click on mobile if possible
+    e.preventDefault();
     moveNoButton();
 });
 noBtn.addEventListener('click', (e) => {
@@ -48,7 +73,7 @@ noBtn.addEventListener('click', (e) => {
 yesBtn.addEventListener('click', () => {
     // 1. Trigger confetti
     triggerConfetti();
-    
+
     // 2. Continuous confetti for a few seconds
     const duration = 3000;
     const end = Date.now() + duration;
@@ -78,7 +103,7 @@ yesBtn.addEventListener('click', () => {
     // 3. Show success message
     successMessage.classList.remove('hidden');
     // Force reflow
-    void successMessage.offsetWidth; 
+    void successMessage.offsetWidth;
     successMessage.classList.add('visible');
 });
 
