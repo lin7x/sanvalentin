@@ -115,3 +115,37 @@ function triggerConfetti() {
         colors: ['#ff4d6d', '#ff8fa3', '#ffffff']
     });
 }
+
+// --- COUPON LOGIC ---
+function redeemCoupon(type) {
+    if (type === 'dinner') {
+        Swal.fire({
+            title: '¡Cena Romántica! 🍝',
+            text: 'Ve eligiendo el lugar (yo pago... a veces 😜). ¡Es broma! Será donde tú quieras.',
+            icon: 'success',
+            confirmButtonColor: '#ff4d6d',
+            confirmButtonText: '¡Qué rico!'
+        });
+    } else if (type === 'punches') {
+        Swal.fire({
+            title: '¡Ay! 🥊',
+            text: 'Este cupón es peligroso... Prometo portarme bien para que no tengas que usarlo (muy fuerte).',
+            icon: 'warning',
+            confirmButtonColor: '#ff4d6d',
+            confirmButtonText: 'Lo pensaré...'
+        });
+    } else if (type === 'ps5') {
+        Swal.fire({
+            title: '¡CONFIRMADO! 🎮',
+            text: 'Acabas de firmar un contrato vinculante. He guardado una captura de pantalla. No se aceptan devoluciones. Fecha de entrega: PRONTO.',
+            imageUrl: 'https://media.giphy.com/media/3oKIPa2TdahY8LAAgw/giphy.gif',
+            imageWidth: 300,
+            imageHeight: 200,
+            imageAlt: 'Money gif',
+            confirmButtonColor: '#d4af37', // Gold color
+            confirmButtonText: '¡Acepto mi destino!'
+        });
+        // Extra confetti for the big prize
+        triggerConfetti();
+    }
+}

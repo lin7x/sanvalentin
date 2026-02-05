@@ -44,11 +44,16 @@
             <p class="dear">Mi amor,</p>
             <p class="body">
                 Desde que llegaste a mi vida, todo es más bonito.
-                Cada sonrisa tuya me alegra el día y cada momento juntos es un regalo.
-                No soy muy bueno con las palabras, pero quería hacer algo especial para ti...
+                Siento que eres mi duo perfecto, mi player 2 y la razón de mis sonrisas.
+                Te quiero más que a mi setup gamer (y eso es mucho decir). 💖
             </p>
             <p class="body">
-                Tengo una pregunta muy importante que hacerte.
+                <strong>¿Qué espero de ti?</strong><br>
+                Que me sigas queriendo, que me aguantes mis locuras y... bueno, que cumplas ciertos "compromisos" que
+                verás si aceptas. 😉
+            </p>
+            <p class="body">
+                Pero antes, tengo una pregunta muy importante...
             </p>
             <button id="finishLetterBtn" class="btn next-btn">Continuar ❤️</button>
         </div>
@@ -58,10 +63,9 @@
     <div id="proposal-screen" class="container hidden">
         <div class="card">
             <h1 class="title">Hola mi amor... ❤️</h1>
-            <p class="subtitle">Tengo una pregunta muy importante para ti</p>
+            <p class="subtitle">Solo hay una respuesta correcta...</p>
 
             <div class="gif-container">
-                <!-- Cute bear asking gif or just a decorative heart -->
                 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif"
                     alt="Cute Bear" class="cute-gif">
             </div>
@@ -80,6 +84,26 @@
         <div class="success-card">
             <h1>¡Sabía que dirías que sí! 🥰</h1>
             <p>Te amo muchísimo ❤️</p>
+            <p class="small-text">Al aceptar, haz desbloqueado tus regalos (y mis regalos jeje):</p>
+
+            <div class="coupons">
+                <div class="coupon" onclick="redeemCoupon('dinner')">
+                    <div class="coupon-header">VALE POR</div>
+                    <div class="coupon-content">Una Cena Romántica 🍝</div>
+                    <div class="coupon-footer">Válido: Cuando quieras</div>
+                </div>
+                <div class="coupon" onclick="redeemCoupon('punches')">
+                    <div class="coupon-header">VALE POR</div>
+                    <div class="coupon-content">Recibir un par de puñetes 🥊</div>
+                    <div class="coupon-footer">Válido: Solo con amor</div>
+                </div>
+                <div class="coupon special" onclick="redeemCoupon('ps5')">
+                    <div class="coupon-header">COMPROMISO DE</div>
+                    <div class="coupon-content">Comprarle una PS5 a tu novio 🎮</div>
+                    <div class="coupon-footer">Válido: LO ANTES POSIBLE</div>
+                </div>
+            </div>
+
             <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Celebration"
                 class="celebrate-gif">
             <button onclick="location.reload()" class="btn reset-btn">Jugar de nuevo</button>
