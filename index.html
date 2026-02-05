@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti for the celebration effect -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="background-hearts"></div>
+    
+    <div class="container">
+        <div class="card">
+            <h1 class="title">Hola mi amor... ❤️</h1>
+            <p class="subtitle">Tengo una pregunta muy importante para ti</p>
+            
+            <div class="gif-container">
+                <!-- Cute bear asking gif or just a decorative heart -->
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Bear" class="cute-gif">
+            </div>
+
+            <h2 class="question">¿Quieres ser mi San Valentín?</h2>
+            
+            <div class="buttons">
+                <button id="yesBtn" class="btn yes-btn">¡Si, claro que si! 💖</button>
+                <button id="noBtn" class="btn no-btn">No 😢</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden message that appears after clicking Yes -->
+    <div id="successMessage" class="hidden">
+        <div class="success-card">
+            <h1>¡Sabía que dirías que sí! 🥰</h1>
+            <p>Te amo muchísimo ❤️</p>
+            <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Celebration" class="celebrate-gif">
+            <button onclick="location.reload()" class="btn reset-btn">Jugar de nuevo</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
